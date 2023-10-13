@@ -8,7 +8,6 @@ import v.hryhoryk.onlinebookstore.repository.BookRepository;
 
 @Service
 public class BookServiceImpl implements BookService {
-
     private final BookRepository bookRepository;
 
     @Autowired
