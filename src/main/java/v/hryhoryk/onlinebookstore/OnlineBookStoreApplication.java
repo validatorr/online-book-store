@@ -30,6 +30,7 @@ public class OnlineBookStoreApplication {
                     "After this book your attitude to studying process will change forever!");
             firstBook.setPrice(
                     BigDecimal.valueOf(329));
+            firstBook.setIsbn("88332-23339-12");
 
             bookService.save(firstBook);
 
