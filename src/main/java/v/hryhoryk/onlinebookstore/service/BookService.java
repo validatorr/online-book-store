@@ -1,10 +1,13 @@
 package v.hryhoryk.onlinebookstore.service;
 
 import java.util.List;
-import v.hryhoryk.onlinebookstore.model.Book;
+import v.hryhoryk.onlinebookstore.dto.BookDto;
+import v.hryhoryk.onlinebookstore.dto.CreateBookRequestDto;
 
 public interface BookService {
-    Book save(Book book);
+    BookDto createBook(CreateBookRequestDto book);
 
-    List<Book> findAll();
+    List<BookDto> getAll();
+
+    BookDto getById(Long id);
 }
