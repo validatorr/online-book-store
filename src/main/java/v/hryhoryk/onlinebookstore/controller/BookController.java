@@ -14,7 +14,7 @@ import v.hryhoryk.onlinebookstore.service.BookService;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(value = "/api/books")
+@RequestMapping(value = "/books")
 public class BookController {
     private final BookService bookService;
 
