@@ -8,7 +8,6 @@ import v.hryhoryk.onlinebookstore.repository.SpecificationProvider;
 
 @Component
 public class TitleSpecificationProvider implements SpecificationProvider<Book> {
-
     @Override
     public String getKey() {
         return "title";

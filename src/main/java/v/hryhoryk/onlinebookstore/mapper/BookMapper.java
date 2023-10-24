@@ -15,7 +15,7 @@ import v.hryhoryk.onlinebookstore.model.Book;
 public interface BookMapper {
     BookDto toDto(Book book);
 
-    Book toEntity(CreateBookRequestDto requestDto);
+    Book toBook(CreateBookRequestDto requestDto);
 
     void updateBookFromDto(CreateBookRequestDto book, @MappingTarget Book entity);
 }

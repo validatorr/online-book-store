@@ -22,7 +22,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public BookDto createBook(CreateBookRequestDto book) {
-        Book bookModel = bookMapper.toEntity(book);
+        Book bookModel = bookMapper.toBook(book);
         return bookMapper.toDto(bookRepository.save(bookModel));
     }
 
