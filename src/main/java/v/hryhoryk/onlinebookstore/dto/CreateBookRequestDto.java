@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
+import org.hibernate.validator.constraints.URL;
+
 import java.math.BigDecimal;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -20,7 +22,7 @@ public record CreateBookRequestDto(
         BigDecimal price,
         @NotNull(message = "Description should contain some useful information")
         String description,
-        @NotNull(message =
+        @URL(message =
                 "It's required to add image of book to increase customer's trust rate")
         String coverImage
 ) {}
