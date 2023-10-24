@@ -1,0 +1,6 @@
+2023-10-24 18:46:18,603 INFO v.hryhoryk.onlinebookstore.OnlineBookStoreApplicationTests:51 Starting OnlineBookStoreApplicationTests using Java 17.0.7 with PID 11256 (started by sp in C:\Users\sp\IdeaProjects\online-book-store)
+2023-10-24 18:46:18,625 INFO v.hryhoryk.onlinebookstore.OnlineBookStoreApplicationTests:637 No active profile set, falling back to 1 default profile: "default"
+2023-10-24 18:46:29,124 INFO v.hryhoryk.onlinebookstore.OnlineBookStoreApplicationTests:57 Started OnlineBookStoreApplicationTests in 11.221 seconds (process running for 15.688)
+2023-10-24 18:49:47,267 INFO v.hryhoryk.onlinebookstore.OnlineBookStoreApplicationTests:51 Starting OnlineBookStoreApplicationTests using Java 17.0.7 with PID 7156 (started by sp in C:\Users\sp\IdeaProjects\online-book-store)
+2023-10-24 18:49:47,344 INFO v.hryhoryk.onlinebookstore.OnlineBookStoreApplicationTests:637 No active profile set, falling back to 1 default profile: "default"
+2023-10-24 18:49:58,375 INFO v.hryhoryk.onlinebookstore.OnlineBookStoreApplicationTests:57 Started OnlineBookStoreApplicationTests in 11.85 seconds (process running for 15.24)

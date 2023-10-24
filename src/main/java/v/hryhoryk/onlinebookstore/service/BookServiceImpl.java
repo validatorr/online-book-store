@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import v.hryhoryk.onlinebookstore.dto.BookDto;
 import v.hryhoryk.onlinebookstore.dto.BookSearchParameters;
 import v.hryhoryk.onlinebookstore.dto.CreateBookRequestDto;
-import v.hryhoryk.onlinebookstore.exceptions.EntityNotFoundException;
+import v.hryhoryk.onlinebookstore.exceptions.BookNotFoundException;
 import v.hryhoryk.onlinebookstore.mapper.BookMapper;
 import v.hryhoryk.onlinebookstore.model.Book;
 import v.hryhoryk.onlinebookstore.repository.book.BookRepository;
@@ -37,14 +37,14 @@ public class BookServiceImpl implements BookService {
     public BookDto getById(Long id) {
         return bookRepository.findById(id)
                 .map(bookMapper::toDto)
-                .orElseThrow(() -> new EntityNotFoundException(
+                .orElseThrow(() -> new BookNotFoundException(
                         "Can't find book with id: " + id));
     }
 
     @Override
     public BookDto updateById(Long id, CreateBookRequestDto book) {
         Book bookFromDb = bookRepository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("Can't find book by id: " + id));
+                () -> new BookNotFoundException("Can't find book by id: " + id));
         bookMapper.updateBookFromDto(book, bookFromDb);
         return bookMapper.toDto(bookRepository.save(bookFromDb));
     }
