@@ -1,6 +1,5 @@
 package v.hryhoryk.onlinebookstore.exceptions;
 
-import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +13,6 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
@@ -30,13 +28,32 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
             HttpStatusCode status,
             WebRequest request) {
         Map<String, Object> body = new LinkedHashMap<>();
-        body.put("timestamp", LocalDateTime.now());
-        body.put("status", HttpStatus.BAD_REQUEST);
         List<String> errors = ex.getBindingResult().getAllErrors().stream()
                 .map(this::getErrorMessage)
                 .toList();
         body.put("errors", errors);
         return new ResponseEntity<>(body, headers, status);
+    }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleEntityNotFoundException(EntityNotFoundException e) {
+        logger.warn("Book not found: " + e.getMessage(), e);
+        ErrorResponse errorResponse = new ErrorResponse(
+                "Book not found",
+                e.getMessage()
+        );
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
+    }
+
+    @ExceptionHandler(KeySpecificationProviderException.class)
+    public ResponseEntity<ErrorResponse> handleKeySpecificationProviderException(
+            KeySpecificationProviderException e) {
+        logger.warn("Can't find correct specification provider: " + e.getMessage(), e);
+        ErrorResponse errorResponse = new ErrorResponse(
+                "Can't find correct specification provider",
+                e.getMessage()
+        );
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 
     private String getErrorMessage(ObjectError e) {
@@ -46,39 +63,5 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
             return field + " " + message;
         }
         return e.getDefaultMessage();
-    }
-
-    @ExceptionHandler(BookNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ErrorResponse handleBookNotFoundException(BookNotFoundException e) {
-        logger.warn("Book not found: " + e.getMessage(), e);
-        return new ErrorResponse(
-                HttpStatus.NOT_FOUND.value(),
-                "Book not found",
-                e.getMessage()
-        );
-    }
-
-    @ExceptionHandler(KeySpecificationProviderException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ErrorResponse handleKeySpecificationProviderException(
-            KeySpecificationProviderException e) {
-        logger.warn("Can't find correct specification provider: " + e.getMessage(), e);
-        return new ErrorResponse(
-                HttpStatus.NOT_FOUND.value(),
-                "Can't find correct specification provider",
-                e.getMessage()
-        );
-    }
-
-    @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ErrorResponse handleGlobalException(Exception e) {
-        logger.error("Internal server error: " + e.getMessage(), e);
-        return new ErrorResponse(
-                HttpStatus.INTERNAL_SERVER_ERROR.value(),
-                "Internal server error",
-                e.getMessage()
-        );
     }
 }
