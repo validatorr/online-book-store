@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import v.hryhoryk.onlinebookstore.dto.ErrorResponseDto;
 
 @RestControllerAdvice
 public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler {
@@ -36,9 +37,10 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
     }
 
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<ErrorResponse> handleEntityNotFoundException(EntityNotFoundException e) {
+    public ResponseEntity<ErrorResponseDto> handleEntityNotFoundException(
+            EntityNotFoundException e) {
         logger.warn("Book not found: " + e.getMessage(), e);
-        ErrorResponse errorResponse = new ErrorResponse(
+        ErrorResponseDto errorResponse = new ErrorResponseDto(
                 "Book not found",
                 e.getMessage()
         );
@@ -46,10 +48,10 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
     }
 
     @ExceptionHandler(KeySpecificationProviderException.class)
-    public ResponseEntity<ErrorResponse> handleKeySpecificationProviderException(
+    public ResponseEntity<ErrorResponseDto> handleKeySpecificationProviderException(
             KeySpecificationProviderException e) {
         logger.warn("Can't find correct specification provider: " + e.getMessage(), e);
-        ErrorResponse errorResponse = new ErrorResponse(
+        ErrorResponseDto errorResponse = new ErrorResponseDto(
                 "Can't find correct specification provider",
                 e.getMessage()
         );
