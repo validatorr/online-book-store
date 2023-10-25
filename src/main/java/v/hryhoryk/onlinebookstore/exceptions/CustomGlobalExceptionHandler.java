@@ -50,35 +50,35 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
 
     @ExceptionHandler(BookNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ErrorResponse handleBookNotFoundException(BookNotFoundException ex) {
-        logger.warn("Book not found: " + ex.getMessage(), ex);
+    public ErrorResponse handleBookNotFoundException(BookNotFoundException e) {
+        logger.warn("Book not found: " + e.getMessage(), e);
         return new ErrorResponse(
                 HttpStatus.NOT_FOUND.value(),
                 "Book not found",
-                ex.getMessage()
+                e.getMessage()
         );
     }
 
     @ExceptionHandler(KeySpecificationProviderException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorResponse handleKeySpecificationProviderException(
-            KeySpecificationProviderException ex) {
-        logger.warn("Can't find correct specification provider: " + ex.getMessage(), ex);
+            KeySpecificationProviderException e) {
+        logger.warn("Can't find correct specification provider: " + e.getMessage(), e);
         return new ErrorResponse(
                 HttpStatus.NOT_FOUND.value(),
                 "Can't find correct specification provider",
-                ex.getMessage()
+                e.getMessage()
         );
     }
 
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ErrorResponse handleGlobalException(Exception ex) {
-        logger.error("Internal server error: " + ex.getMessage(), ex);
+    public ErrorResponse handleGlobalException(Exception e) {
+        logger.error("Internal server error: " + e.getMessage(), e);
         return new ErrorResponse(
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
                 "Internal server error",
-                ex.getMessage()
+                e.getMessage()
         );
     }
 }

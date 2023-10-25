@@ -4,9 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
-import org.hibernate.validator.constraints.URL;
-
 import java.math.BigDecimal;
+import org.hibernate.validator.constraints.URL;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public record CreateBookRequestDto(
