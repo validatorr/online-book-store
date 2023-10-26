@@ -3,6 +3,7 @@ package v.hryhoryk.onlinebookstore.exceptions;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpHeaders;
@@ -20,7 +21,7 @@ import v.hryhoryk.onlinebookstore.dto.ErrorResponseDto;
 
 @RestControllerAdvice
 public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler {
-     Logger logger = LogManager.getLogger(CustomGlobalExceptionHandler.class);
+    private final Logger logger = LogManager.getLogger(CustomGlobalExceptionHandler.class);
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
