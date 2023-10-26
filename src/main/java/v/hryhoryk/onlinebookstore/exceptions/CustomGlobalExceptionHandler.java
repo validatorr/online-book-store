@@ -20,7 +20,7 @@ import v.hryhoryk.onlinebookstore.dto.ErrorResponseDto;
 
 @RestControllerAdvice
 public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler {
-    private static final Logger logger = LogManager.getLogger(CustomGlobalExceptionHandler.class);
+     Logger logger = LogManager.getLogger(CustomGlobalExceptionHandler.class);
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
