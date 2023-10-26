@@ -1,5 +1,6 @@
 package v.hryhoryk.onlinebookstore.controller;
 
+import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,16 +24,19 @@ import v.hryhoryk.onlinebookstore.service.BookService;
 public class BookController {
     private final BookService bookService;
 
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping
     public List<BookDto> getAll() {
         return bookService.getAll();
     }
 
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}")
     public BookDto getBookById(@PathVariable Long id) {
         return bookService.getById(id);
     }
 
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/search")
     public List<BookDto> search(BookSearchParameters searchParameters) {
         return bookService.search(searchParameters);
@@ -40,10 +44,11 @@ public class BookController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public BookDto createBook(@RequestBody CreateBookRequestDto requestDto) {
+    public BookDto createBook(@RequestBody @Valid CreateBookRequestDto requestDto) {
         return bookService.createBook(requestDto);
     }
 
+    @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id}")
     public BookDto updateById(@PathVariable Long id, @RequestBody CreateBookRequestDto book) {
         return bookService.updateById(id, book);
