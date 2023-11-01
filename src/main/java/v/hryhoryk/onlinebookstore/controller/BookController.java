@@ -27,8 +27,8 @@ import v.hryhoryk.onlinebookstore.dto.BookSearchParameters;
 import v.hryhoryk.onlinebookstore.dto.CreateBookRequestDto;
 import v.hryhoryk.onlinebookstore.service.book.BookService;
 
-@Tag(name = "Book store API",
-        description = "Endpoints for managing book store API")
+@Tag(name = "Book managing",
+        description = "Endpoints for managing books")
 @RequiredArgsConstructor
 @RestController
 @Validated
