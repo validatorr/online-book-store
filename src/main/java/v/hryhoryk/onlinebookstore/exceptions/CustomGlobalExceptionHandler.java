@@ -3,8 +3,6 @@ package v.hryhoryk.onlinebookstore.exceptions;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -20,7 +18,6 @@ import v.hryhoryk.onlinebookstore.dto.ErrorResponseDto;
 
 @RestControllerAdvice
 public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler {
-    private final Logger logger = LogManager.getLogger(CustomGlobalExceptionHandler.class);
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
@@ -39,7 +36,6 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<ErrorResponseDto> handleEntityNotFoundException(
             EntityNotFoundException e) {
-        logger.warn("Book not found: " + e.getMessage(), e);
         ErrorResponseDto errorResponse = new ErrorResponseDto(
                 "Book not found",
                 e.getMessage()
@@ -50,9 +46,28 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
     @ExceptionHandler(KeySpecificationProviderException.class)
     public ResponseEntity<ErrorResponseDto> handleKeySpecificationProviderException(
             KeySpecificationProviderException e) {
-        logger.warn("Can't find correct specification provider: " + e.getMessage(), e);
         ErrorResponseDto errorResponse = new ErrorResponseDto(
                 "Can't find correct specification provider",
+                e.getMessage()
+        );
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
+    }
+
+    @ExceptionHandler(RegistrationException.class)
+    public ResponseEntity<ErrorResponseDto> handleRegistrationException(
+            RegistrationException e) {
+        ErrorResponseDto errorResponse = new ErrorResponseDto(
+                "Registration failed",
+                e.getMessage()
+        );
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+    }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<ErrorResponseDto> handleRegistrationException(
+            UserNotFoundException e) {
+        ErrorResponseDto errorResponse = new ErrorResponseDto(
+                "Registration failed",
                 e.getMessage()
         );
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
