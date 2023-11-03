@@ -20,11 +20,6 @@ public class FiledMatchValidator implements ConstraintValidator<FieldMatch, Obje
                 .getPropertyValue(firstField);
         Object secondFieldValue = new BeanWrapperImpl(value)
                 .getPropertyValue(secondField);
-
-        if (firstFieldValue != null) {
-            return firstFieldValue.equals(secondFieldValue);
-        } else {
-            return secondFieldValue == null;
-        }
+        return firstFieldValue != null && firstFieldValue.equals(secondFieldValue);
     }
 }

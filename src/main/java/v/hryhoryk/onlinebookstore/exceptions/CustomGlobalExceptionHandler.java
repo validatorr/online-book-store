@@ -60,7 +60,7 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
                 "Registration failed",
                 e.getMessage()
         );
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
     }
 
     @ExceptionHandler(UserNotFoundException.class)

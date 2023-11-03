@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponseDto register(UserRegistrationRequestDto requestDto)
             throws RegistrationException {
-        if (userRepository.findByEmail(requestDto.email()).isPresent()) {
+        if (userRepository.existsByEmail(requestDto.email())) {
             throw new RegistrationException("Registration failed. User already exists.");
         }
         Role roleByName = roleRepository.getRoleByName(Role.RoleName.ROLE_USER);
