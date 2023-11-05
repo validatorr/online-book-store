@@ -5,8 +5,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import v.hryhoryk.onlinebookstore.exceptions.KeySpecificationProviderException;
 import v.hryhoryk.onlinebookstore.model.Book;
-import v.hryhoryk.onlinebookstore.repository.SpecificationProvider;
-import v.hryhoryk.onlinebookstore.repository.SpecificationProviderManager;
+import v.hryhoryk.onlinebookstore.repository.specification.SpecificationProvider;
+import v.hryhoryk.onlinebookstore.repository.specification.SpecificationProviderManager;
 
 @Component
 @RequiredArgsConstructor

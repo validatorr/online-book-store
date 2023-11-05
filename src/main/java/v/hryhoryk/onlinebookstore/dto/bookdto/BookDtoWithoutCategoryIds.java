@@ -1,8 +1,8 @@
-package v.hryhoryk.onlinebookstore.dto;
+package v.hryhoryk.onlinebookstore.dto.bookdto;
 
 import java.math.BigDecimal;
 
-public record BookDto(
+public record BookDtoWithoutCategoryIds(
         Long id,
         String title,
         String author,
@@ -10,4 +10,5 @@ public record BookDto(
         BigDecimal price,
         String description,
         String coverImage
-) {}
+) {
+}

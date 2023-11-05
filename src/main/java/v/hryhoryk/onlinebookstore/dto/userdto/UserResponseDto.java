@@ -1,4 +1,4 @@
-package v.hryhoryk.onlinebookstore.dto;
+package v.hryhoryk.onlinebookstore.dto.userdto;
 
 public record UserResponseDto(
         Long id,

@@ -1,4 +1,4 @@
-package v.hryhoryk.onlinebookstore.dto;
+package v.hryhoryk.onlinebookstore.dto.userdto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -29,7 +29,7 @@ public record UserRegistrationRequestDto(
                         Password must be 8+ characters long, contain at least one special character,
                         one digit, one lowercase and uppercase letter.
                         """)
-        @Size(min = 8,max = 100)
+        @Size(min = 8, max = 100)
         String password,
         @NotBlank(message = "You need to repeat your password")
         @Size(min = 8, max = 100)
