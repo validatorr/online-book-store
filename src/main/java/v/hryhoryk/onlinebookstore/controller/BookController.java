@@ -44,8 +44,7 @@ public class BookController {
             @ApiResponse(responseCode = "404",
                     description = "Not found - no books are available")
     })
-    @ResponseStatus(HttpStatus.OK)
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasRole('USER')")
     @GetMapping
     public List<BookDto> getAll(
             @PageableDefault Pageable pageable) {
@@ -60,8 +59,7 @@ public class BookController {
             @ApiResponse(responseCode = "404",
                     description = "Not found - book by this ID was not found")
     })
-    @ResponseStatus(HttpStatus.OK)
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("/{id}")
     public BookDto getBookById(
             @PathVariable @Positive Long id) {
@@ -76,8 +74,7 @@ public class BookController {
             @ApiResponse(responseCode = "404",
                     description = "Not found - books by this searching parameters were not found")
     })
-    @ResponseStatus(HttpStatus.OK)
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("/search")
     public List<BookDto> search(
             BookSearchParameters searchParameters, Pageable pageable) {
@@ -108,7 +105,6 @@ public class BookController {
             @ApiResponse(responseCode = "400",
                     description = "Bad request - request data validation failed")
     })
-    @ResponseStatus(HttpStatus.OK)
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
     public BookDto updateById(

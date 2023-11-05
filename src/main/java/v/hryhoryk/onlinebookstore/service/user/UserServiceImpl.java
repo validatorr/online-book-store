@@ -22,8 +22,7 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public UserResponseDto register(UserRegistrationRequestDto requestDto)
-            throws RegistrationException {
+    public UserResponseDto register(UserRegistrationRequestDto requestDto) {
         if (userRepository.existsByEmail(requestDto.email())) {
             throw new RegistrationException("Registration failed. User already exists.");
         }

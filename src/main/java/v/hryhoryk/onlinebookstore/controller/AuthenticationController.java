@@ -37,7 +37,6 @@ public class AuthenticationController {
                     description = "Authentication failed, wrong credentials")
     })
     @PostMapping("/login")
-    @ResponseStatus(code = HttpStatus.OK)
     public UserLoginResponseDto login(@RequestBody @Valid UserLoginRequestDto requestDto) {
         return authenticationService.authenticate(requestDto);
     }
