@@ -10,17 +10,16 @@ public class FiledMatchValidator implements ConstraintValidator<FieldMatch, Obje
 
     @Override
     public void initialize(FieldMatch constraintAnnotation) {
-        this.fields = new String[]
-                {constraintAnnotation.firstField(), constraintAnnotation.secondField()};
+        this.fields = constraintAnnotation.fields();
     }
 
     @Override
     public boolean isValid(Object value, ConstraintValidatorContext context) {
         BeanWrapper beanWrapper = new BeanWrapperImpl(value);
-        for (int i = 0; i < fields.length - 1; i++) {
+        Object firstFieldValue = beanWrapper.getPropertyValue(fields[0]);
+        for (int i = 1; i < fields.length; i++) {
             Object fieldValue = beanWrapper.getPropertyValue(fields[i]);
-            Object nextFieldValue = beanWrapper.getPropertyValue(fields[i + 1]);
-            if (fieldValue == null || !fieldValue.equals(nextFieldValue)) {
+            if (fieldValue == null || !fieldValue.equals(firstFieldValue)) {
                 return false;
             }
         }

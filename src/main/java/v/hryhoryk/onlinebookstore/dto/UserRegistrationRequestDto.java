@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import v.hryhoryk.onlinebookstore.validation.FieldMatch;
 
-@FieldMatch(firstField = "password", secondField = "repeatPassword",
+@FieldMatch(fields = {"password", "repeatPassword"},
         message = "Passwords must match, try again")
 public record UserRegistrationRequestDto(
         @NotBlank(message = "Email field can't be empty!")

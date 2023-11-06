@@ -13,9 +13,7 @@ import java.lang.annotation.Target;
 @Constraint(validatedBy = FiledMatchValidator.class)
 @Documented
 public @interface FieldMatch {
-    String firstField();
-
-    String secondField();
+    String[] fields();
 
     String message() default "Fields must match";
 
