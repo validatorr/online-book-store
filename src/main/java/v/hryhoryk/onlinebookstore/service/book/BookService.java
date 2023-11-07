@@ -1,4 +1,4 @@
-package v.hryhoryk.onlinebookstore.service;
+package v.hryhoryk.onlinebookstore.service.book;
 
 import java.util.List;
 import org.springframework.data.domain.Pageable;
