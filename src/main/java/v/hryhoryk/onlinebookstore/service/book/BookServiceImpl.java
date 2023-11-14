@@ -1,12 +1,13 @@
 package v.hryhoryk.onlinebookstore.service.book;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import v.hryhoryk.onlinebookstore.dto.bookdto.BookDto;
 import v.hryhoryk.onlinebookstore.dto.bookdto.BookDtoWithoutCategoryIds;
 import v.hryhoryk.onlinebookstore.dto.bookdto.BookSearchParameters;
@@ -27,6 +28,7 @@ public class BookServiceImpl implements BookService {
     private final BookSpecificationBuilder bookSpecificationBuilder;
     private final CategoryRepository categoryRepository;
 
+    @Transactional
     @Override
     public BookDtoWithoutCategoryIds createBook(CreateBookRequestDto book) {
         Book bookEntity = bookMapper.toBook(book);
@@ -50,6 +52,7 @@ public class BookServiceImpl implements BookService {
                         "Can't find book with id: " + id));
     }
 
+    @Transactional
     @Override
     public BookDto updateById(Long id, CreateBookRequestDto book) {
         Book bookFromDb = bookRepository.findById(id).orElseThrow(
@@ -82,7 +85,9 @@ public class BookServiceImpl implements BookService {
     }
 
     private void setCategories(Book book, List<Long> categoryIds) {
-        Set<Category> categories = new HashSet<>(categoryRepository.findAllById(categoryIds));
+        Set<Category> categories = categoryIds.stream()
+                .map(categoryRepository::getReferenceById)
+                .collect(Collectors.toSet());
         book.setCategories(categories);
     }
 }
