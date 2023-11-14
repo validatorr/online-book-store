@@ -1,11 +1,11 @@
 package v.hryhoryk.onlinebookstore.dto.bookdto;
 
-import java.math.BigDecimal;
-import java.util.List;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.PositiveOrZero;
+import java.math.BigDecimal;
+import java.util.List;
 import org.hibernate.validator.constraints.URL;
 
 public record CreateBookRequestDto(
