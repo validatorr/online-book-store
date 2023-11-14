@@ -62,7 +62,7 @@ public class BookController {
     })
     @PreAuthorize("hasRole('USER')")
     @GetMapping("/{id}")
-    public BookDtoWithoutCategoryIds getBookById(
+    public BookDto getBookById(
             @PathVariable @Positive Long id) {
         return bookService.getById(id);
     }
