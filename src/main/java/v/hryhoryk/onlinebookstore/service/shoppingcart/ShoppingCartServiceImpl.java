@@ -41,7 +41,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Override
     public CartItemDto addCartItemToShoppingCart(
             CartItemRequestDto cartItemRequestDto, Authentication authentication) {
-        User user = (User) userDetailsService.loadUserByUsername(authentication.getName());
+        User user = getUser(authentication);
         ShoppingCart shoppingCart = shoppingCartRepository.findByUserId(user.getId());
         Optional<CartItem> cartItemFromDB =
                 cartItemRepository.findByShoppingCartIdAndBookId(
@@ -60,7 +60,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public void deleteCartItem(Authentication authentication, Long cartItemId) {
-        User user = (User) userDetailsService.loadUserByUsername(authentication.getName());
+        User user = getUser(authentication);
         CartItem cartItem = cartItemRepository.findByIdAndShoppingCartId(
                 cartItemId, user.getShoppingCart().getId())
                 .orElseThrow(() -> new EntityNotFoundException(
@@ -71,13 +71,17 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Transactional
     @Override
     public CartItemDto updateQuantityOfCartItem(
-            Authentication authentication, Long cartItemId, CartItemQuantityDto requestDtp) {
-        User user = (User) userDetailsService.loadUserByUsername(authentication.getName());
+            Authentication authentication, Long cartItemId, CartItemQuantityDto requestDto) {
+        User user = getUser(authentication);
         CartItem cartItem = cartItemRepository.findByIdAndShoppingCartId(
                         cartItemId, user.getShoppingCart().getId())
                 .orElseThrow(() -> new EntityNotFoundException(
                         "Can't find cart item by id: " + cartItemId + " in your shopping cart"));
-        cartItem.setQuantity(requestDtp.quantity());
+        cartItem.setQuantity(requestDto.quantity());
         return cartItemMapper.toDto(cartItemRepository.save(cartItem));
+    }
+
+    private User getUser(Authentication authentication) {
+        return (User) userDetailsService.loadUserByUsername(authentication.getName());
     }
 }

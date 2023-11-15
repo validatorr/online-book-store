@@ -7,7 +7,6 @@ import v.hryhoryk.onlinebookstore.dto.cartitemdto.CartItemRequestDto;
 import v.hryhoryk.onlinebookstore.dto.shoppingcartdto.ShoppingCartDto;
 
 public interface ShoppingCartService {
-
     ShoppingCartDto getShoppingCartByUserId(Authentication authentication);
 
     CartItemDto addCartItemToShoppingCart(CartItemRequestDto cartItemRequestDto,

@@ -31,7 +31,8 @@ public class UserServiceImpl implements UserService {
         createShoppingCart(user);
         setUserRole(user);
         setUserPassword(user, requestDto);
-        return saveUserAndReturnDto(user);
+        User savedUser = userRepository.save(user);
+        return userMapper.toDto(savedUser);
     }
 
     private void createShoppingCart(User user) {
@@ -47,10 +48,5 @@ public class UserServiceImpl implements UserService {
 
     private void setUserPassword(User user, UserRegistrationRequestDto requestDto) {
         user.setPassword(passwordEncoder.encode(requestDto.password()));
-    }
-
-    private UserResponseDto saveUserAndReturnDto(User user) {
-        User savedUser = userRepository.save(user);
-        return userMapper.toDto(savedUser);
     }
 }
