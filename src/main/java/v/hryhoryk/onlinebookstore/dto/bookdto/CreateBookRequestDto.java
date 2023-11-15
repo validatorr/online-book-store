@@ -1,9 +1,11 @@
-package v.hryhoryk.onlinebookstore.dto;
+package v.hryhoryk.onlinebookstore.dto.bookdto;
 
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
+import java.util.List;
 import org.hibernate.validator.constraints.URL;
 
 public record CreateBookRequestDto(
@@ -21,5 +23,8 @@ public record CreateBookRequestDto(
         String description,
         @URL(message =
                 "It's required to add image of book to increase customer's trust rate")
-        String coverImage
-) {}
+        String coverImage,
+        @NotEmpty(message = "Make sure that book has it's category")
+        List<Long> categoryIds
+) {
+}

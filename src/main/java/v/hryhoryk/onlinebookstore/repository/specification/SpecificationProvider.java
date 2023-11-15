@@ -1,4 +1,4 @@
-package v.hryhoryk.onlinebookstore.repository;
+package v.hryhoryk.onlinebookstore.repository.specification;
 
 import org.springframework.data.jpa.domain.Specification;
 

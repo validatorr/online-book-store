@@ -3,8 +3,8 @@ package v.hryhoryk.onlinebookstore.mapper;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.NullValueCheckStrategy;
-import v.hryhoryk.onlinebookstore.dto.UserRegistrationRequestDto;
-import v.hryhoryk.onlinebookstore.dto.UserResponseDto;
+import v.hryhoryk.onlinebookstore.dto.userdto.UserRegistrationRequestDto;
+import v.hryhoryk.onlinebookstore.dto.userdto.UserResponseDto;
 import v.hryhoryk.onlinebookstore.model.User;
 
 @Mapper(componentModel = "spring",

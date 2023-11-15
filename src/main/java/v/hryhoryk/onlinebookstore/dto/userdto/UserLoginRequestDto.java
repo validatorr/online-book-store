@@ -1,4 +1,4 @@
-package v.hryhoryk.onlinebookstore.dto;
+package v.hryhoryk.onlinebookstore.dto.userdto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

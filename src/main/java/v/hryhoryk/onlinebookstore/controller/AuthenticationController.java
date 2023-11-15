@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import v.hryhoryk.onlinebookstore.dto.UserLoginRequestDto;
-import v.hryhoryk.onlinebookstore.dto.UserLoginResponseDto;
-import v.hryhoryk.onlinebookstore.dto.UserRegistrationRequestDto;
-import v.hryhoryk.onlinebookstore.dto.UserResponseDto;
+import v.hryhoryk.onlinebookstore.dto.userdto.UserLoginRequestDto;
+import v.hryhoryk.onlinebookstore.dto.userdto.UserLoginResponseDto;
+import v.hryhoryk.onlinebookstore.dto.userdto.UserRegistrationRequestDto;
+import v.hryhoryk.onlinebookstore.dto.userdto.UserResponseDto;
 import v.hryhoryk.onlinebookstore.security.AuthenticationService;
 import v.hryhoryk.onlinebookstore.service.user.UserService;
 

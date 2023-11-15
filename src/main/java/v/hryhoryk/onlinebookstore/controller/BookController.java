@@ -22,9 +22,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import v.hryhoryk.onlinebookstore.dto.BookDto;
-import v.hryhoryk.onlinebookstore.dto.BookSearchParameters;
-import v.hryhoryk.onlinebookstore.dto.CreateBookRequestDto;
+import v.hryhoryk.onlinebookstore.dto.bookdto.BookDto;
+import v.hryhoryk.onlinebookstore.dto.bookdto.BookDtoWithoutCategoryIds;
+import v.hryhoryk.onlinebookstore.dto.bookdto.BookSearchParameters;
+import v.hryhoryk.onlinebookstore.dto.bookdto.CreateBookRequestDto;
 import v.hryhoryk.onlinebookstore.service.book.BookService;
 
 @Tag(name = "Book managing",
@@ -48,7 +49,7 @@ public class BookController {
     @GetMapping
     public List<BookDto> getAll(
             @PageableDefault Pageable pageable) {
-        return bookService.getAll(pageable);
+        return bookService.getAllWithCategories(pageable);
     }
 
     @Operation(summary = "Get a book by ID",
@@ -61,7 +62,7 @@ public class BookController {
     })
     @PreAuthorize("hasRole('USER')")
     @GetMapping("/{id}")
-    public BookDto getBookById(
+    public BookDtoWithoutCategoryIds getBookById(
             @PathVariable @Positive Long id) {
         return bookService.getById(id);
     }
@@ -76,13 +77,13 @@ public class BookController {
     })
     @PreAuthorize("hasRole('USER')")
     @GetMapping("/search")
-    public List<BookDto> search(
+    public List<BookDtoWithoutCategoryIds> search(
             BookSearchParameters searchParameters, Pageable pageable) {
         return bookService.search(searchParameters, pageable);
     }
 
     @Operation(summary = "Create a new book",
-            description = "Adds a new book to the catalog")
+            description = "Admin can add a new book to the catalog")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201",
                     description = "Successfully created"),
@@ -92,7 +93,7 @@ public class BookController {
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
-    public BookDto createBook(
+    public BookDtoWithoutCategoryIds createBook(
             @RequestBody @Valid CreateBookRequestDto requestDto) {
         return bookService.createBook(requestDto);
     }
