@@ -9,6 +9,7 @@ import v.hryhoryk.onlinebookstore.dto.userdto.UserResponseDto;
 import v.hryhoryk.onlinebookstore.exceptions.RegistrationException;
 import v.hryhoryk.onlinebookstore.mapper.UserMapper;
 import v.hryhoryk.onlinebookstore.model.Role;
+import v.hryhoryk.onlinebookstore.model.ShoppingCart;
 import v.hryhoryk.onlinebookstore.model.User;
 import v.hryhoryk.onlinebookstore.repository.role.RoleRepository;
 import v.hryhoryk.onlinebookstore.repository.user.UserRepository;
@@ -26,11 +27,26 @@ public class UserServiceImpl implements UserService {
         if (userRepository.existsByEmail(requestDto.email())) {
             throw new RegistrationException("Registration failed. User already exists.");
         }
-        Role roleByName = roleRepository.getRoleByName(Role.RoleName.ROLE_USER);
         User user = userMapper.toUser(requestDto);
-        user.setRoles(Set.of(roleByName));
-        user.setPassword(passwordEncoder.encode(requestDto.password()));
+        createShoppingCart(user);
+        setUserRole(user);
+        setUserPassword(user, requestDto);
         User savedUser = userRepository.save(user);
         return userMapper.toDto(savedUser);
+    }
+
+    private void createShoppingCart(User user) {
+        ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.setUser(user);
+        user.setShoppingCart(shoppingCart);
+    }
+
+    private void setUserRole(User user) {
+        Role roleByName = roleRepository.getRoleByName(Role.RoleName.ROLE_USER);
+        user.setRoles(Set.of(roleByName));
+    }
+
+    private void setUserPassword(User user, UserRegistrationRequestDto requestDto) {
+        user.setPassword(passwordEncoder.encode(requestDto.password()));
     }
 }

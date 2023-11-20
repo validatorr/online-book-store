@@ -12,7 +12,7 @@ public interface BookService {
 
     List<BookDto> getAllWithCategories(Pageable pageable);
 
-    BookDtoWithoutCategoryIds getById(Long id);
+    BookDto getById(Long id);
 
     BookDto updateById(Long id, CreateBookRequestDto book);
 
