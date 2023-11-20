@@ -1,5 +1,6 @@
 package v.hryhoryk.onlinebookstore.service.shoppingcart;
 
+import java.util.Collections;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -79,6 +80,12 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
                         "Can't find cart item by id: " + cartItemId + " in your shopping cart"));
         cartItem.setQuantity(requestDto.quantity());
         return cartItemMapper.toDto(cartItemRepository.save(cartItem));
+    }
+
+    @Override
+    public void cleanShoppingCart(ShoppingCart shoppingCart) {
+        shoppingCart.setCartItems(Collections.emptySet());
+        cartItemRepository.deleteAllByShoppingCartId(shoppingCart.getId());
     }
 
     private User getUser(Authentication authentication) {
