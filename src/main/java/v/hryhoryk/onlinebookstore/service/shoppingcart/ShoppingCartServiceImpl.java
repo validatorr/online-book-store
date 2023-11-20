@@ -32,7 +32,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public ShoppingCartDto getShoppingCartByUserId(Authentication authentication) {
-        User user = (User) userDetailsService.loadUserByUsername(authentication.getName());
+        User user = getUser(authentication);
         ShoppingCart shoppingCart = shoppingCartRepository.findByUserId(user.getId());
         return shoppingCartMapper.toDto(shoppingCart);
     }
