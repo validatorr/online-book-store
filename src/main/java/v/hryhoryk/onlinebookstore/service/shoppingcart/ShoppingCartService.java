@@ -5,6 +5,7 @@ import v.hryhoryk.onlinebookstore.dto.cartitemdto.CartItemDto;
 import v.hryhoryk.onlinebookstore.dto.cartitemdto.CartItemQuantityDto;
 import v.hryhoryk.onlinebookstore.dto.cartitemdto.CartItemRequestDto;
 import v.hryhoryk.onlinebookstore.dto.shoppingcartdto.ShoppingCartDto;
+import v.hryhoryk.onlinebookstore.model.ShoppingCart;
 
 public interface ShoppingCartService {
     ShoppingCartDto getShoppingCartByUserId(Authentication authentication);
@@ -16,4 +17,6 @@ public interface ShoppingCartService {
 
     CartItemDto updateQuantityOfCartItem(Authentication authentication,
                                          Long carItemId, CartItemQuantityDto requestDto);
+
+    void cleanShoppingCart(ShoppingCart shoppingCart);
 }
