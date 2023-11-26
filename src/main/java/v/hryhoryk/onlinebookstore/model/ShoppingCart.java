@@ -30,7 +30,7 @@ public class ShoppingCart {
     @MapsId
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    @OneToOne(fetch = FetchType.LAZY, orphanRemoval = true, optional = false)
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id", nullable = false)
     private User user;
 
