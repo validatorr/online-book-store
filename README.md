@@ -109,5 +109,5 @@
 * You will need an **.env** file, where you should put all the required environment variables
 * In terminal, type mvn clean package && docker-compose build && docker-compose up
 * The app will be running locally at http://localhost:8081
-* But it's more comfortable to test it on Swagger, here is a link: http://localhost:8089/swagger-ui/index.html#/
+* But it's more comfortable to test it on Swagger, here is a link: http://localhost:8081/swagger-ui/index.html#/
     
