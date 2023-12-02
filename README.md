@@ -1,63 +1,72 @@
 # Book Store 📚
 
-![img_3.png](img_3.png)
+![](images/book_photos.png)
 
-* #### Do you want to transport your local bookstore to the World Wide Web? 🌐
+## 💡Short overview of the project:  
 
-* #### Tired of putting so many efforts into your store, but not getting expected revenue? 💸
+#### The main problems this project solves are as follows: 
 
-* #### Striving to start a new chapter in your life? 📆
+* #### It's a secure application where in order to get access to any endpoints - registration required. 🔒🛡️
 
-## If this concerns you, then you are in the right place!✨
+* #### There all necessary entities for full cycle of product purchasing: User, Role, Book, Category, Shopping Cart, Cart Item, Order and Order Item. 🛒📚🛍️ 
 
-# 🗂️ Project structure: 
+* #### N + 1 problems excluded, that's why retrieval of any information from database will be fast and optimized. ⚡🚀
 
-![img_1.png](img_1.png)
-
-# 🛢️ Database structure:
-
-![img_2.png](img_2.png)
+* #### Application will be executed on any computer with any OS - Docker included in this project. 🖥️🐳
 
 # 💥 General functionality of the project:
 
 ## 📓 _Book Controller_
 
+![](images/book_controller.png)
+
 * #### **Admin** is able to post new books, edit or delete them
 * #### **User** can browse through all books, search by parameters or look for a specific book
 #
 ## 📜 _Category Controller_
+
+![](images/category_controller.png)
+
 * #### **Admin** is capable of creating new categories, updating existing ones or deleting them
 * #### **User** can check all categories available, look at certain category or get a list of books of a chosen category
 #
 ## 📦 _Order Controller_
+
+![](images/order_controller.png)
+
 * #### **Admin** can update a status of order
 * #### **User** have the ability to place an order, check order history and look at specific orders
 #
 ## 🛒 _Shopping Cart Controller_
+
+![](images/shopping-cart_controller.png)
 * #### **User** is able to add book to shopping cart, retrieve all the books being placed there, delete book or update its quantity
 #
 ## 🔐 _Authentication Controller_
+
+![](images/authentication_controller.png)
 * #### In order to gain access to whole functionality, newcomer needs to register and login
 * #### There are two roles here: **Admin**👨🏻‍💼 and **User**🧑🏻‍💻
+
 #
 ### 👨‍💻 Technologies used:
 
 <details>
   <summary>♨️ Java</summary>
 
-  `Java is the main language being used in this project`
+`17 version of Java is used`
 </details>
 
 <details>
     <summary>🍃️ Spring Boot</summary>
 
-`Framework for creating java-based applications`
+`3.1.4 version of Spring Boot`
 </details>
 
 <details>
     <summary>🐳 Docker</summary>
 
-`Makes your program run on every OS`
+`Allows to run this application on every OS`
 </details>
 
 <details>
@@ -69,38 +78,50 @@
 <details>
     <summary>📖 Swagger</summary>
 
-`Provides a comfortable documentation and testing environment for your API`
+`Provides a comfortable documentation and testing environment for this API`
 </details>
 
 <details>
     <summary>🛠️ Lombok</summary>
 
-`Library that offers you reducing boilerplate code`
+`1.18.22 version of lombok library is used here`
 </details>
 
 <details>
   <summary>🧪 + 🚰 Liquibase</summary>
 
-`Allows to migrate database changes more securely`
+`3.10.3 version of liquibase is used here`
 </details>
 
 <details>
     <summary>🗺️ + 🏗️ Mapstruct</summary>
 
-`Helps to change a state of object to different dto`
+`1.5.3 version of mapstruct library is used here`
 </details>
 
 <details>
     <summary>🔒 + 🌱 Spring Security</summary>
 
-`Gives your app good instruments for authentication and authoriztion process`
+`3.1.4 version is used here`
 </details>
 
 <details>
     <summary>🛢️ + 🌱 Spring Data JPA</summary>
 
-`Makes data manipulation simpler, allows to focus on custom queries`
+`3.1.4 version is used here`
 </details>
+
+# 🗂️ Project structure: 
+
+![img_1.png](images/project_structure.png)
+
+# 🛢️ Database structure:
+
+![img_2.png](images/database_structure.png)
+
+
+#
+
 
 # How to launch this application? 🚀
 
@@ -108,6 +129,6 @@
 * We are going to use Docker, so make sure its downloaded on your machine
 * You will need an **.env** file, where you should put all the required environment variables
 * In terminal, type mvn clean package && docker-compose build && docker-compose up
-* The app will be running locally at http://localhost:8081
-* But it's more comfortable to test it on Swagger, here is a link: http://localhost:8081/swagger-ui/index.html#/
+* The app will be running locally at http://localhost:8081/api
+* But it's more comfortable to test it on Swagger, here is a link: http://localhost:8081/api/swagger-ui/index.html#/
     
