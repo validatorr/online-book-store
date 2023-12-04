@@ -1,10 +1,12 @@
 # Book Store 📚
 
-![](images/book_photos.png)
+![](images/books_photo.jpg)
 
 ## 💡Short overview of the project:  
 
 #### The main problems this project solves are as follows: 
+
+* #### In this online bookstore 📚, customers can explore a vast collection of books and curate their orders based on their preferences. Sellers, on the other hand, have the opportunity to broaden the assortment, ensuring a diverse selection for customers and efficiently handling orders. 📦🛍️
 
 * #### It's a secure application where in order to get access to any endpoints - registration required. 🔒🛡️
 
@@ -88,25 +90,25 @@
 </details>
 
 <details>
-  <summary>🧪 + 🚰 Liquibase</summary>
+  <summary>🔄 Liquibase</summary>
 
 `3.10.3 version of liquibase is used here`
 </details>
 
 <details>
-    <summary>🗺️ + 🏗️ Mapstruct</summary>
+    <summary>🗺️ Mapstruct</summary>
 
 `1.5.3 version of mapstruct library is used here`
 </details>
 
 <details>
-    <summary>🔒 + 🌱 Spring Security</summary>
+    <summary>🔐 Spring Security</summary>
 
 `3.1.4 version is used here`
 </details>
 
 <details>
-    <summary>🛢️ + 🌱 Spring Data JPA</summary>
+    <summary>🛢️ Spring Data JPA</summary>
 
 `3.1.4 version is used here`
 </details>
